@@ -4,21 +4,22 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Attende")
-public class Attende implements Serializable {
+@Table(name = "Location")
+public class Location implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 200)
     private String name;
-    @Column(length = 100)
-    private String email;
+    @Column(nullable = false, length = 400, unique = true)
+    private String address;
+    @Column(nullable = false)
+    private int capacity;
 
     public UUID getId() {
         return id;
@@ -36,12 +37,19 @@ public class Attende implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }
