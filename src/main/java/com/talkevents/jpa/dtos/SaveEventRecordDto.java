@@ -7,7 +7,7 @@ import java.util.UUID;
 public record SaveEventRecordDto(
         String name,
         LocalDateTime date,
-        Set<UUID> attendees,
+        Set<UUID> attendes,
         SaveLocationRecordDto location
 ) {
 }
