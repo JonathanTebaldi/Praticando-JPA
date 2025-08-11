@@ -23,6 +23,9 @@ public class Session implements Serializable {
     private Time startTime;
     @Column(nullable = false)
     private Time endTime;
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false)
+    private Event event;
 
     public UUID getId() {
         return id;
@@ -54,5 +57,12 @@ public class Session implements Serializable {
 
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
