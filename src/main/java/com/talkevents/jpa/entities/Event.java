@@ -33,6 +33,8 @@ public class Event  implements Serializable {
                 inverseJoinColumns = @JoinColumn(name = "attende_id")
         )
         private Set<Attende> attendes = new HashSet<>();
+        @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+        private Location location;
 
     public UUID getId() {
         return id;
@@ -72,5 +74,13 @@ public class Event  implements Serializable {
 
     public void setAttendes(Set<Attende> attendes) {
         this.attendes = attendes;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

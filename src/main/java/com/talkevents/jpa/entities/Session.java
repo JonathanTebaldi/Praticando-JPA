@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,6 +27,17 @@ public class Session implements Serializable {
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
+    @ManyToMany
+    @JoinTable(
+            name = "session_attende",
+            joinColumns = @JoinColumn(name = "sessioId"),
+            inverseJoinColumns = @JoinColumn(name = "attendeId")
+    )
+    private Set<Attende> attendes = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "speakerId")
+    private Speaker speaker;
 
     public UUID getId() {
         return id;
@@ -62,7 +74,20 @@ public class Session implements Serializable {
     public Event getEvent() {
         return event;
     }
-    public void setEvent(Event event) {
-        this.event = event;
+
+    public Set<Attende> getAttendes() {
+        return attendes;
+    }
+
+    public void setAttendes(Set<Attende> attendes) {
+        this.attendes = attendes;
+    }
+
+    public Speaker getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(Speaker speaker) {
+        this.speaker = speaker;
     }
 }
